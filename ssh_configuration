@@ -1,0 +1,63 @@
+1. Generate a new SSH key
+Run this command (replace your_email@example.com with your GitHub email):
+
+bash
+Copy
+Edit
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+When it asks for a file location, just press Enter to accept the default (/Users/your_user/.ssh/id_rsa).
+
+When it asks for a passphrase, you can either enter one or leave it empty and press Enter twice.
+
+2. Start the SSH agent
+bash
+Copy
+Edit
+eval "$(ssh-agent -s)"
+3. Add your SSH private key to the agent
+bash
+Copy
+Edit
+ssh-add ~/.ssh/id_rsa
+4. Copy your SSH public key to clipboard
+On macOS:
+
+bash
+Copy
+Edit
+pbcopy < ~/.ssh/id_rsa.pub
+If pbcopy is not available, just run:
+
+bash
+Copy
+Edit
+cat ~/.ssh/id_rsa.pub
+and manually copy the output.
+
+5. Add the SSH key to your GitHub account
+Go to https://github.com/settings/keys
+
+Click New SSH key
+
+Paste your public key into the key box
+
+Give it a name (e.g. "My MacBook Air")
+
+Click Add SSH key
+
+6. Test the SSH connection to GitHub
+bash
+Copy
+Edit
+ssh -T git@github.com
+You should see a message like:
+
+vbnet
+Copy
+Edit
+Hi rishi0490! You've successfully authenticated, but GitHub does not provide shell access.
+7. Clone your repo using SSH
+bash
+Copy
+Edit
+git clone git@github.com:rishi0490/infra-holiday_tribe.git
